@@ -1,0 +1,27 @@
+# Only coreservice gets a VirtualService for external exposure
+{{- range $name, $svc := .Values.services }}
+{{- if eq $name "coreservice" }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ $name }}-vs
+  namespace: {{ $.Values.namespace }}
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - epiplexai-gateway
+  http:
+    - match:
+        - uri:
+            prefix: "/{{ $name }}"
+      rewrite:
+        uri: "/"  # This will strip /coreservice
+      route:
+        - destination:
+            host: {{ $name }}.{{ $.Release.Namespace }}.svc.cluster.local
+            port:
+              number: {{ $svc.port }}
+{{- end }}
+{{- end }}
+

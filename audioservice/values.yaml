@@ -1,0 +1,60 @@
+namespace: epiplexai
+
+# Global Image Pull Secret for ACR (Optional)
+global:
+  imagePullSecrets: acr-secret
+
+# Service Account Configuration
+serviceAccount:
+  create: false
+  name: "epiplexai-service-account"
+
+# Number of replicas per service
+replicaCount: 1
+
+# Resource Limits and Requests
+resources:
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+  requests:
+    cpu: "500m"
+    memory: "512Mi"
+# Type of Kubernetes Service
+service:
+  type: ClusterIP
+
+# Horizontal Pod Autoscaler (HPA)
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 10  
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+# Ingress (not used, you're using Istio)
+ingress:
+  enabled: false
+  annotations: {}
+  hosts: []
+  tls: []
+
+# Istio Gateway
+gateway:
+  enabled: false
+  name: epiplexai-gateway
+
+# Microservices configuration
+services:
+ 
+   audioservice:
+    image: epiplexai.azurecr.io/audioservice:1.0
+    port: 5003
+    exposeExternally: false
+    nodeSelector:
+      "agentpool": "nodepool1"
+ #   tolerations:
+ #     - key: "audio"
+ #       value: "reserved" 
+ #       effect: "NoSchedule"
+
