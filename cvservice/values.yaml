@@ -10,7 +10,7 @@ serviceAccount:
   name: "epiplexai-service-account"
 
 # Number of replicas per service
-replicaCount: 2
+replicaCount: 1
 
 # Resource Limits and Requests
 resources:
