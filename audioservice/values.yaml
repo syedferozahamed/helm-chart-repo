@@ -10,14 +10,14 @@ serviceAccount:
   name: "epiplexai-service-account"
 
 # Number of replicas per service
-replicaCount: 1
+replicaCount: 
 
 # Resource Limits and Requests
 resources:
   limits:
     cpu: "500m"
     memory: "512Mi"
-  requests:
+   requests:
     cpu: "500m"
     memory: "512Mi"
 # Type of Kubernetes Service
