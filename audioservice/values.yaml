@@ -16,7 +16,7 @@ resources:
   limits:
     cpu: "500m"
     memory: "512Mi"
-   requests:
+  requests:
     cpu: "500m"
     memory: "512Mi"
 # Type of Kubernetes Service
