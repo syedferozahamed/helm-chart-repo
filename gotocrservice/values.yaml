@@ -52,5 +52,5 @@ services:
     image: epiplexai.azurecr.io/gotocrservice:1.0
     port: 8012
     exposeExternally: false
-    nodeSelector:
-      "agentpool": "cpu"
+#    nodeSelector:
+#     "agentpool": "cpu"
