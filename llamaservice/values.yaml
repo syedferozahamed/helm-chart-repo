@@ -51,8 +51,8 @@ services:
     image: epiplexai.azurecr.io/llamaservice:1.0
     port: 5007
     exposeExternally: false
-    nodeSelector:
-      "agentpool": "cpu"
+#    nodeSelector:
+#      "agentpool": "cpu"
   
  
 
